@@ -5,13 +5,16 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from time import sleep
 
-import smtplib, ssl
+import csv, smtplib, ssl, datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+#FECHA
+today = datetime.date.today()
+
 #DATOS DEL EMAIL
 sender_email = "pythonmorgan@gmail.com"
-receiver_email = "mortilotti@gmail.com"
+receiver_email = "jriotri@gmail.com"
 
 #PARA MARCOS mortilotti@gmail.com
 password = input("Type your password and press enter: ")
@@ -37,7 +40,7 @@ options.headless = True
 #------------------------------------- dropdown.select_by_visible_text('Banana')
 
 file = open("./codigo.txt", "w", encoding="utf-8")
-file.write("<html><body><h1>Listado de IP localizadas en blacklist (blacklistmaster.com)</h1><p>He sido generado con python</p>")
+file.write(f"<html><body><h1>Listado de IP localizadas en blacklist (blacklistmaster.com) - {today}</h1><p>He sido generado con python</p>")
 
 
 #PARA COMPROBAR CADA ELEMENTO DE LA LISTA
@@ -128,9 +131,15 @@ message.attach(part2)
 context = ssl.create_default_context()
 with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
     server.login(sender_email, password)
-    server.sendmail(
-        sender_email, receiver_email, message.as_string()
-    )
+    with open("contactos.csv") as file:
+        reader = csv.reader(file)
+        next(reader)  # Skip header row
+        for name, email in reader:
+            server.sendmail(
+                sender_email,
+                email,
+                message.as_string(),
+            )
 
 
 
