@@ -9,12 +9,8 @@ import py2exe
  
 #-------------------------------------------- setup(console=['ip_blacklist.py'])
  
-setup(
-    console = ['ip_blacklist.py'],
-    options = {
-        'py2exe': {
-            'packages' : ['bs4', 'selenium', 'email']
-            }
-        }
-)
+setup(console = ['ip_blacklist.py'],options = {'py2exe': {'packages' : ['bs4', 'selenium', 'time', 'email']}}, )
+
+#-------------------------------------------- import csv, smtplib, ssl, datetime
+
 
