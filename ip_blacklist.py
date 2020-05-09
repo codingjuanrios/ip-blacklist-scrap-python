@@ -1,4 +1,5 @@
 #PARA VIGILAR LAS IP DE LOS SERVIDORES DE MORGAN MEDIA
+#PARA INTERACTUAR MEDIANTE LA LINEA DE COMANDOS - NO EMAIL
 
 from bs4 import BeautifulSoup
 
@@ -6,18 +7,10 @@ from selenium import webdriver
 from time import sleep
 
 import csv, smtplib, ssl, datetime
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+
 
 #FECHA
 today = datetime.date.today()
-
-#DATOS DEL EMAIL
-sender_email = "pythonmorgan@gmail.com"
-receiver_email = "jriotri@gmail.com"
-
-#PARA MARCOS mortilotti@gmail.com
-password = input("Type your password and press enter: ")
 
 print("Iniciando scrapeo")
 
