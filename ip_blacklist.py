@@ -2,14 +2,24 @@
 #PARA INTERACTUAR MEDIANTE LA LINEA DE COMANDOS - NO EMAIL
 
 from bs4 import BeautifulSoup
-
 from selenium import webdriver
 from time import sleep
-
 import datetime, json
+
 
 with open("./listado.json", "r") as read_file:
     dct_servers = json.load(read_file)
+
+#------------------------------------------------------------ #INCLUIR NUEVAS IP
+#-------------- incluir_ip = input("Hola! Quieres incluir alguna IP? (Si/No): ")
+#------------------------------------------------------------------------------ 
+#-------------------------------------------------------- if incluir_ip == "Si":
+    #----------------------------------- nombre = input("Nombre del servidor: ")
+    #-------------------------------------------------------- ip = input("IP: ")
+    #-------------------------------------------------- dct_servers[nombre] = ip
+    #--------------------------------------------------------- print("Incluido")
+#------------------------------------------------------------------------- else:
+    #----------------------------------------- print('No se incluye ninguna IP')
 
 
 #FECHA
@@ -84,6 +94,6 @@ file = open("./codigo.html", "r", encoding="utf-8")
 resultado = file.read()
 file.close
 
-print('Fin de la búsqueda')
+print('Fin de la busqueda')
 
 quit()
