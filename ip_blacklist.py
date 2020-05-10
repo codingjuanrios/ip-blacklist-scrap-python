@@ -1,5 +1,4 @@
 #PARA VIGILAR LAS IP DE LOS SERVIDORES DE MORGAN MEDIA
-#PARA INTERACTUAR MEDIANTE LA LINEA DE COMANDOS - NO EMAIL
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -46,6 +45,7 @@ def incluir_ip(lista_ip):
 def borrar_ip(lista_ip):
     sleep(1)    
     comprobacion = True
+
     
     while comprobacion:
         nombre = input('Nombre del servidor a borrar:')
