@@ -1,4 +1,5 @@
 #PARA VIGILAR LAS IP DE LOS SERVIDORES DE MORGAN MEDIA
+#PARA INCLUIR UNA GUI EN ESTE PROGRAMA
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -148,10 +149,6 @@ def escanear():
     
     file.write("</html></body>")
     file.close
-    
-    #----------------------- file = open("./codigo.html", "r", encoding="utf-8")
-    #--------------------------------------------------- resultado = file.read()
-    #---------------------------------------------------------------- file.close
     
     print('Fin del proceso')
 
