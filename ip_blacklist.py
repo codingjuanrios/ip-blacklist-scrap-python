@@ -6,6 +6,11 @@ from selenium import webdriver
 from time import sleep
 import datetime, json
 
+#PARA HACER HEADLESS EL NAVEGADOR
+from selenium.webdriver.firefox.options import Options
+options = Options()
+options.headless = True
+
 #FUNCION PARA MODIFICAR EL LISTADO DE IP
 def modificar():
     with open("./listado.json", "r") as read_file:
@@ -44,7 +49,7 @@ def incluir_ip(lista_ip):
 
 #FUNCION PARA BORRAR IP
 def borrar_ip(lista_ip):
-    sleep(1)    
+    sleep(1)
     comprobacion = True
 
     
@@ -82,7 +87,7 @@ def revisar_srv(ip,nombre):
 
 
 #FUNCION PARA EJECUTAR EL ESCANEO
-def escanear():
+def escanear(options):
     with open("./listado.json", "r") as read_file:
         dct_servers = json.load(read_file)
     print('Estas monitorizando estas IP:')
@@ -96,11 +101,6 @@ def escanear():
     sleep(1)
     print("Iniciando scrapeo")
     
-    #PARA HACER HEADLESS EL NAVEGADOR
-    from selenium.webdriver.firefox.options import Options
-    options = Options()
-    options.headless = True
-    
     #COMENZAR EL ARCHIVO
     file = open("./codigo.html", "w", encoding="utf-8")
     file.write(f"<html><body><h1>Listado de IP localizadas en blacklist (blacklistmaster.com) - {today}</h1><p>He sido generado con python</p>")
@@ -109,7 +109,7 @@ def escanear():
     #PARA COMPROBAR CADA ELEMENTO DE LA LISTA
     for srv in dct_servers:
         #PARA HACER VISIBLE EL NAVEGADOR
-        #--------------------------------------------- browser = webdriver.Firefox()
+        #browser = webdriver.Firefox()
         #PARA HACER INVISIBLE EL NAVEGADOR
         browser = webdriver.Firefox(options=options)
         
@@ -152,9 +152,13 @@ def escanear():
     
     print('Fin del proceso')
 
+#------------------------------------ #FUNCION PARA VER EL ARCHIVO DE RESULTADOS
+#---------------------------------------------------------- def ver_resultado():
+    #--------------------------------------------- browser = webdriver.Firefox()
+    # browser.get("file:///C:/Users/escri/OneDrive/Programacion/python/ip-blacklist-scrap-python/codigo.html")
+
 
 #RAMA PRINCIPAL DEL PROGRAMA
-
 programa = True
 
 print('Hola!')
@@ -168,7 +172,10 @@ while programa:
     elif iniciar_incluir == "ejecutar":
         print('Ejecutando el escaneo')
         sleep(1)
-        escanear()
+        escanear(options)
+        #------ ver_archivo = input ("Ver resultado en el navegador? (si/no): ")
+        #----------------------------------------------- if ver_archivo == "si":
+            #--------------------------------------------------- ver_resultado()
     elif iniciar_incluir == "salir":
         print('Saliendo')
         programa = False
